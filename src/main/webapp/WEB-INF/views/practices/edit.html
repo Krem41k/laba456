@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Обновление данных</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
+</head>
+<body>
+<form th:method="PATCH" th:action="@{/practice/{id}(id=${practice.getId()})}" th:object="${practice}" class="container mt-5 mb-5">
+    <h1>Обновление данных о практике</h1>
+    <div class="form-group">
+        <label for="nameOfOrganization">Введите название организации </label>
+        <input type="text" class="form-control" th:field="*{nameOfOrganization}" id="nameOfOrganization"/>
+        <div style="color:red" th:if="${#fields.hasErrors('nameOfOrganization')}" th:errors="*{nameOfOrganization}">Age Error</div>
+    </div>
+    <div class="form-group">
+        <label for="city">Введите город</label>
+        <input type="text" class="form-control" th:field="*{city}" id="city"/>
+        <div style="color:red" th:if="${#fields.hasErrors('city')}" th:errors="*{city}">Age Error</div>
+    </div>
+    <div class="form-group">
+        <label for="positionHeld">Введите должность</label>
+        <input type="text" class="form-control" th:field="*{positionHeld}" id="positionHeld"/>
+        <div style="color:red" th:if="${#fields.hasErrors('positionHeld')}" th:errors="*{positionHeld}">Age Error</div>
+    </div>
+    <div class="form-group">
+        <label for="dateOfReceipt">Введите дату приёма </label>
+        <input type="text" class="form-control" th:field="*{dateOfReceipt}" id="dateOfReceipt"/>
+        <div style="color:red" th:if="${#fields.hasErrors('dateOfReceipt')}" th:errors="*{dateOfReceipt}">Age Error</div>
+    </div>
+    <div class="form-group">
+        <label for="salary">Введите зарплату</label>
+        <input type="text" class="form-control" th:field="*{salary}" id="salary"/>
+        <div style="color:red" th:if="${#fields.hasErrors('salary')}" th:errors="*{salary}">Age Error</div>
+    </div><br>
+    <button type="submit" class="btn btn-primary">Обновить!</button>
+</form>
+</body>
+</html>

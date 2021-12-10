@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Все студенты</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+</head>
+<body>
+<!--<div class="d-flex flex-column flex-md-row align-items-center pb-3">-->
+<!--    <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">-->
+<!--        <a class="me-3 py-2 text-dark text-decoration-none" href="/student">Студенты</a>-->
+<!--        <a class="me-3 py-2 text-dark text-decoration-none" href="/practice">Практики</a>-->
+<!--        <a class="me-3 py-2 text-dark text-decoration-none" href="/practiceReport">Отчёт по практикам</a>-->
+<!--    </nav>-->
+<!--</div>-->
+<br>
+<div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+        Список таблиц доступных для работы
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+        <li><a class="dropdown-item" href="/student">Студенты</a></li>
+        <li><a class="dropdown-item" href="/practice">Практики</a></li>
+        <li><a class="dropdown-item" href="/practiceReport">Отчёт по практикам</a></li>
+    </ul>
+</div>
+<header class="d-flex flex-wrap justify-content-center py-3 ">
+    <ul class="nav nav-pills">
+        <li class="nav-item"><a href="/student/new" class="nav-link active" aria-current="page">Создать студента</a></li>
+    </ul>
+</header>
+<table class="table table-striped table-bordered">
+    <thead>
+    <tr>
+        <th>ID </th>
+        <th>Фамилия студента</th>
+        <th>Год рождения</th>
+        <th>Пол</th>
+        <th>Группа</th>
+        <th>Средний балл</th>
+        <th>Email</th>
+        <th>Действия</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="student : ${students}">
+        <td th:text="${student.getId()}" />
+        <td th:text="${student.getLastname()}" />
+        <td  th:text="${student.getYearOfBirth()}"/>
+        <td  th:text="${student.getSex()}"/>
+        <td  th:text="${student.getStudentGroup()}"/>
+        <td  th:text="${student.getAverageScore()}"/>
+        <td  th:text="${student.getEmail()}"/>
+        <td><a class="btn btn-outline-info mb-3" th:href="@{/student/{id}/edit(id=${student.getId()})}"
+               role="button">Обновить</a>
+        <form th:method="DELETE" th:action="@{/student/{id}(id = ${student.getId()})}">
+            <button type="submit" class="btn btn-outline-danger">Удалить</button>
+        </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

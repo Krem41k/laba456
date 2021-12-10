@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Новый отчёт по практике</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
+</head>
+<body>
+<form th:method="POST" th:action="@{/practiceReport}" th:object="${practiceReport}" class="container mt-5 mb-5">
+    <h1>Создание отчёта по практике</h1>
+    <div class="form-group">
+        <label for="practiceId">Введите ID практики</label>
+        <input type="text" class="form-control" th:field="*{practiceId}" id="practiceId"/>
+    </div>
+    <div class="form-group">
+        <label for="studentId">Введите ID студента</label>
+        <input type="text" class="form-control" th:field="*{studentId}" id="studentId"/>
+    </div>
+    <div class="form-group">
+        <label for="expirationDate">Введите дату окончания практики</label>
+        <input type="date" class="form-control" th:field="*{expirationDate}" id="expirationDate"/>
+    </div>
+    <div class="form-group">
+        <label for="grade">Введите оценку за практику</label>
+        <input type="text" class="form-control" th:field="*{grade}" id="grade"/>
+    </div>
+    <br>
+    <button type="submit" class="btn btn-primary">Создать!</button>
+</form>
+</body>
+</html>
